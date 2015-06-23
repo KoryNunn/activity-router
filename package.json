@@ -1,0 +1,30 @@
+{
+  "name": "activity-router",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watchexample": "watchify example/index.js -o example/index.browser.js"
+  },
+  "author": "Kory Nunn <knunn187@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "debounce": "^1.0.0",
+    "route-tree": "^2.3.2"
+  },
+  "devDependencies": {
+    "crel": "^2.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KoryNunn/activity-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KoryNunn/activity-router/issues"
+  },
+  "homepage": "https://github.com/KoryNunn/activity-router#readme",
+  "description": ""
+}
