@@ -164,7 +164,7 @@ module.exports = function(routes, getActivities, updateRoute){
         }, 0);
     };
 
-    activityRouter.update = updateRoutes;
+    activityRouter.init = updateRoutes;
 
     return activityRouter;
 }
