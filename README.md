@@ -82,6 +82,6 @@ Emitted an existing activity is updated
 
 Emitted an existing activity is replaced
 
-### router.on('remove', function(newActivity, index){});
+### router.on('remove', function(removedActivity, index){});
 
 Emitted an existing activity is removed
