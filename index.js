@@ -18,6 +18,10 @@ module.exports = function(routes, getActivities, updateRoute){
     }
     
     function updateActivity(activity, index){
+        if(activities.length <= index){
+            return addActivity(activity);
+        }
+
         activities[index] = activity;
 
         updateHash();
@@ -26,6 +30,10 @@ module.exports = function(routes, getActivities, updateRoute){
     }
     
     function replaceActivity(activity, index){
+        if(activities.length <= index){
+            return addActivity(activity);
+        }
+
         if(activities[index].name === activity.name){
             return updateActivity(activity, index);
         }
@@ -38,6 +46,10 @@ module.exports = function(routes, getActivities, updateRoute){
     }
     
     function removeActivity(index){
+        if(!activities[index]){
+            return;
+        }
+        
         var activity = activities[index];
 
         activities.splice(index, 1);
