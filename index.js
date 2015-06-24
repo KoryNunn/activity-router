@@ -83,13 +83,13 @@ module.exports = function(routes, getActivities, updateRoute){
         return path;
     }
 
-    var updateHash = debounce(function(){
+    var updateHash = function(){
         var path = buildPath();
 
         if(router.basePath + '#' + path !== window.location.href){
             window.location.hash = path;
         }
-    });
+    };
 
     var routeCounter = 0;
 
