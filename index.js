@@ -16,19 +16,19 @@ module.exports = function(routes, getActivities, updateRoute){
 
         activityRouter.emit('add', activity, activities.length - 1);
     }
-    
+
     function updateActivity(activity, index){
         if(activities.length <= index){
             return addActivity(activity);
         }
 
-        activities[index] = activity;
+        activities[index].values = activity.values;
 
         updateHash();
 
-        activityRouter.emit('update', activity, index);
+        activityRouter.emit('update', activities[index], index);
     }
-    
+
     function replaceActivity(activity, index){
         if(activities.length <= index){
             return addActivity(activity);
@@ -44,12 +44,12 @@ module.exports = function(routes, getActivities, updateRoute){
 
         activityRouter.emit('replace', activity, index);
     }
-    
+
     function removeActivity(index){
         if(!activities[index]){
             return;
         }
-        
+
         var activity = activities[index];
 
         activities.splice(index, 1);
@@ -114,7 +114,7 @@ module.exports = function(routes, getActivities, updateRoute){
             }else{
                 var newName = router.find(path),
                     newValues = router.values(path);
-                
+
                 replaceActivity({
                     name: newName,
                     values: newValues
@@ -172,7 +172,7 @@ module.exports = function(routes, getActivities, updateRoute){
 
         replaceActivity({
             name: name,
-            values: values            
+            values: values
         }, 0);
     };
 
