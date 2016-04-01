@@ -139,8 +139,8 @@ module.exports = function(routes, location){
         buildRoutes();
     },10);
 
-    window.addEventListener('hashchange', updateRoutes);
-    window.addEventListener('popstate', updateRoutes);
+    global.addEventListener('hashchange', updateRoutes);
+    global.addEventListener('popstate', updateRoutes);
 
     activityRouter.router = router,
 
