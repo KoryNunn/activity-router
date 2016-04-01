@@ -420,7 +420,7 @@ module.exports = function(routes, location){
     }
 
     function getPaths(){
-        return window.location.hash.split('#').slice(1);
+        return location.hash.split('#').slice(1);
     }
 
     function buildPath(){
@@ -443,13 +443,13 @@ module.exports = function(routes, location){
         return path;
     }
 
-    var updateHash = function(){
+    var updateHash = debounce(function(){
         var path = buildPath();
 
-        if(router.basePath + '#' + path !== window.location.href){
-            window.location.hash = path;
+        if(router.basePath + path !== location.href){
+            location.hash = path;
         }
-    };
+    });
 
     var routeCounter = 0;
 
@@ -489,7 +489,7 @@ module.exports = function(routes, location){
     }
 
     var updateRoutes = debounce(function(){
-        if(activities.length && buildPath() === window.location.hash){
+        if(activities.length && buildPath() === location.hash){
             return;
         }
         buildRoutes();

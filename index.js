@@ -87,13 +87,13 @@ module.exports = function(routes, location){
         return path;
     }
 
-    var updateHash = function(){
+    var updateHash = debounce(function(){
         var path = buildPath();
 
-        if(router.basePath + '#' + path !== location.href){
+        if(router.basePath + path !== location.href){
             location.hash = path;
         }
-    };
+    });
 
     var routeCounter = 0;
 
