@@ -2,12 +2,16 @@ var Router = require('route-tree'),
     EventEmitter = require('events').EventEmitter,
     debounce = require('debounce');
 
-module.exports = function(routes, getActivities, updateRoute){
+module.exports = function(routes, location){
+    if(!location){
+        location = global.location;
+    }
+
     var activityRouter = new EventEmitter(),
         activities = [],
-        router = new Router(routes);
+        router = new Router(routes, location);
 
-    router.basePath = window.location.href.match(/(^[^?#]*)\/.*$/)[1] + '/';
+    router.basePath = location.href.match(/(^[^?#]*)\/.*$/)[1] + '/';
 
     function addActivity(activity){
         activities.push(activity);
@@ -60,7 +64,7 @@ module.exports = function(routes, getActivities, updateRoute){
     }
 
     function getPaths(){
-        return window.location.hash.split('#').slice(1);
+        return location.hash.split('#').slice(1);
     }
 
     function buildPath(){
@@ -86,8 +90,8 @@ module.exports = function(routes, getActivities, updateRoute){
     var updateHash = function(){
         var path = buildPath();
 
-        if(router.basePath + '#' + path !== window.location.href){
-            window.location.hash = path;
+        if(router.basePath + '#' + path !== location.href){
+            location.hash = path;
         }
     };
 
@@ -129,7 +133,7 @@ module.exports = function(routes, getActivities, updateRoute){
     }
 
     var updateRoutes = debounce(function(){
-        if(activities.length && buildPath() === window.location.hash){
+        if(activities.length && buildPath() === location.hash){
             return;
         }
         buildRoutes();

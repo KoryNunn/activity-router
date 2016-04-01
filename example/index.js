@@ -14,11 +14,11 @@ var logElement = crel('div');
 
 function logChange(type){
     return function(activity, index){
-        logElement.innerHTML += 
+        logElement.innerHTML +=
             '<br>' + [
-                type, 
-                activity.name, 
-                JSON.stringify(activity.values), 
+                type,
+                activity.name,
+                JSON.stringify(activity.values),
                 index
             ].join(' ');
     };
@@ -31,7 +31,7 @@ router.on('remove', logChange('remove'));
 
 window.addEventListener('load', function(){
 
-    router.update();
+    router.init();
 
     var pushActivity = crel('button', 'Add "foo" activity');
     pushActivity.addEventListener('click', function(){
