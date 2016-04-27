@@ -93,7 +93,7 @@ module.exports = function(routes, location){
         if(router.basePath + path !== location.href){
             location.hash = path;
         }
-    });
+    }, 10);
 
     var routeCounter = 0;
 
@@ -137,7 +137,7 @@ module.exports = function(routes, location){
             return;
         }
         buildRoutes();
-    },10);
+    }, 10);
 
     global.addEventListener('hashchange', updateRoutes);
     global.addEventListener('popstate', updateRoutes);
