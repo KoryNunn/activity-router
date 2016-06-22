@@ -46,6 +46,10 @@ router.init();
 
 add an activity.
 
+### activityRouter.remove(activity)
+
+remove an activity
+
 ### activityRouter.replace(name, values, index)
 
 replace an activity at `index` with a new activity
