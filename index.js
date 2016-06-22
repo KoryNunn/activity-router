@@ -142,7 +142,15 @@ module.exports = function(routes, location){
     global.addEventListener('hashchange', updateRoutes);
     global.addEventListener('popstate', updateRoutes);
 
-    activityRouter.router = router,
+    activityRouter.router = router;
+
+    activityRouter.remove = function(activity){
+        var index = activities.indexOf(activity);
+
+        if (~index){
+            removeActivity(index);
+        }
+    };
 
     activityRouter.add = function(name, values){
         addActivity({
@@ -183,4 +191,4 @@ module.exports = function(routes, location){
     activityRouter.init = updateRoutes;
 
     return activityRouter;
-}
+};
